@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Upgrading pip and installing deps..."
-python3 -m pip install --upgrade pip
-pip install build requests tomli twine
+echo "Installing/upgrading build tools..."
+python3 -m pip install -U packaging
+python3 -m pip install build twine requests tomli --quiet
+
+echo "Cleaning old builds..."
+rm -rf dist build *.egg-info
+find . -name "*.egg-info" -type d -exec rm -rf {} +
 
 echo "Checking version mismatch..."
 PUBLISH=$(python3 << 'EOF'

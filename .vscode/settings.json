@@ -1,6 +1,0 @@
-{
-  "python.analysis.indexing": true,
-  "python.analysis.packageIndexDepths": [
-    { "name": "<repo>", "depth": 4 }
-  ]
-}

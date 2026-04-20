@@ -1,1 +1,1 @@
-DEV_APP="src"
+export DEV_APP="pilot"

@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "<repo>"
+name = "pilot-code"
 version = "0.1.0"
-description = "<description>"
+description = "Coding harness for multi-agent execution and orchestration"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.12"
@@ -13,18 +13,24 @@ authors = [
   { name = "AttAditya" }
 ]
 
-keywords = []
+keywords = ["coding-harness", "agents", "automation", "orchestration"]
 
-classifiers = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
 
 [project.urls]
-Homepage = "https://github.com/AttAditya/<repo>"
-Repository = "https://github.com/AttAditya/<repo>"
-Issues = "https://github.com/AttAditya/<repo>/issues"
+Homepage = "https://github.com/AttAditya/pilot"
+Repository = "https://github.com/AttAditya/pilot"
+Issues = "https://github.com/AttAditya/pilot/issues"
 
 [project.scripts]
-<repo> = "<repo>.__main__:main"
+pilot = "pilot.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["<repo>*"]
+include = ["pilot*"]
+
