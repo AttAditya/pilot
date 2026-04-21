@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "<repo>"
+version = "0.1.0"
+description = "<description>"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+authors = [
+  { name = "AttAditya" }
+]
+
+keywords = []
+
+classifiers = []
+
+[project.urls]
+Homepage = "https://github.com/AttAditya/<repo>"
+Repository = "https://github.com/AttAditya/<repo>"
+Issues = "https://github.com/AttAditya/<repo>/issues"
+
+[project.scripts]
+<repo> = "<repo>.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["<repo>*"]
