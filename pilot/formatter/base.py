@@ -7,6 +7,6 @@ from pilot.data.content import Content
 class BaseFormatter:
   @args_required(Content)
   @returns(str)
-  def format(self, content):
+  def format(self, __content__):
     ...
 

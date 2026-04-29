@@ -10,6 +10,14 @@ __start_env() {
   fi
 }
 
+__close_env() {
+  if [ -f ".venv/bin/activate" ]; then
+    if [ -n "$VIRTUAL_ENV" ]; then
+      deactivate
+    fi
+  fi
+}
+
 __guide() {
   $SCRIPTS_DIR/help.sh $SCRIPTS_DIR $@
 }
@@ -22,6 +30,8 @@ dev() {
 
   COMMAND=$1
   shift
+
+  trap __close_env EXIT
 
   if [ ! -f "$SCRIPTS_DIR/$COMMAND.sh" ]; then
     echo "Unknown command: $COMMAND\n"

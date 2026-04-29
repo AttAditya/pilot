@@ -1,39 +1,30 @@
-from decimal import Context
-
-from langex.core.classes import implements
-from langex.core.functions import args_required
+from langex.core.classes import extends
 
 from pilot.data.content import Content
-from pilot.io.console import ConsoleIO
+from pilot.data.context import Context
 from pilot.role.base import BaseRole
 from pilot.role.registry import ROLES
 
-@implements(BaseRole)
-class User:
+@extends
+class User(BaseRole):
   def __init__(self):
     self.name = ROLES.USER
-    self.io = ConsoleIO()
-    self.synced = 0
+    self.context = Context()
 
-  @args_required(object)
-  def sync_chat(self, context):
-    if self.synced < len(context.contents):
-      for content in context.contents[self.synced:]:
-        if content.role.name == ROLES.USER:
-          continue
+  def get_name(self) -> str:
+    return self.name
 
-        self.io.push_output(f"[{content.role.name}] {content.data}")
+  def produce(self) -> Content:
+    data: str = ""
 
-      self.synced = len(context.contents)
+    while not data.strip():
+      data = input("User: ").strip()
 
-  def act(self, context, figures):
-    self.sync_chat(context)
-    data = self.io.get_input("[you] ")
-    next_role = figures.get_role(ROLES.CHAT)
+    tool_name, updated_data = self.check_tool_call(data)
+    content = Content(tool_name, updated_data)
 
-    if data[0] == "!":
-      if data.startswith("!exit ") or data == "!exit":
-        next_role = None
+    return content
 
-    return Content(self, data, next_role)
+  def consume(self, content: Content):
+    self.context.add_content(content)
 
