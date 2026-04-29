@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/AttAditya/pilot/main/Pilot.png" alt="Pilot Logo" width="200" height="100" style="object-fit: cover;" />
+<img src="https://raw.githubusercontent.com/AttAditya/pilot/main/Pilot.png" alt="Pilot Logo" width="200" height="200" />
 
 # Pilot
 
