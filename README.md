@@ -1,10 +1,6 @@
 <div align="center">
 
-```txt
-__|__
---o--(_)--o--
-P I L O T
-```
+<img src="https://raw.githubusercontent.com/AttAditya/pilot/main/assets/Pilot.png" alt="Pilot Logo" width="200"/>
 
 # Pilot
 
