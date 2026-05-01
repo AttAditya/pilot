@@ -1,5 +1,5 @@
 from langex.core.classes import langex_class
-from langex.core.functions import args_required, returns
+from langex.core.functions import autosig
 
 from pilot.data.content import Content
 from pilot.formatter.base import BaseFormatter
@@ -8,25 +8,17 @@ from pilot.formatter.base import BaseFormatter
 class Context:
   def __init__(self):
     self.contents = []
-    self.formatter = None
 
-  @args_required(BaseFormatter)
-  def attach_formatter(self, formatter):
-    self.formatter = formatter
-
-  @args_required(Content)
-  def add_content(self, content):
+  @autosig
+  def add_content(self, content: Content):
     self.contents.append(content)
 
-  @returns(str)
-  def get_context(self):
-    if self.formatter is None:
-      raise Exception("Formatter is not attached.")
-
+  @autosig
+  def get_context(self, formatter: BaseFormatter) -> str:
     context = ""
 
     for content in self.contents:
-      context += self.formatter.format(content)
+      context += formatter.format(content)
 
     return context
 

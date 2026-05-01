@@ -1,6 +1,7 @@
 from pilot.data.control import Control
 from pilot.data.figures import Figures
-from pilot.role.user import User
+from pilot.role.factory import RoleFactory
+from pilot.role.registry import ROLES
 
 class Manager:
   def __init__(self):
@@ -10,7 +11,7 @@ class Manager:
 
   def setup(self):
     figures = [
-      User(),
+      RoleFactory.create_role(ROLES.USER),
     ]
 
     for figure in figures:

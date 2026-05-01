@@ -1,5 +1,6 @@
 class Content:
-  def __init__(self, target: str | None, data: str):
+  def __init__(self, source: str, target: str | None, data: str):
+    self.source: str = source
     self.target: str | None = target
     self.content: str = data
     self.meta: dict[str, str] = {}

@@ -5,33 +5,27 @@ from pilot.data.content import Content
 
 @abstract
 class BaseRole:
-  def add_tool(self, tool_name: str, tool_desc: str):
-    if not hasattr(self, "tools"):
-      self.tools: dict[str, str] = {}
+  def __init__(self):
+    self.name: str = "BaseRole"
+    self.tools: dict[str, str] = {}
 
-    self.tools[tool_name] = tool_desc
-
-  def check_tool_call(self, data: str) -> tuple[str | None, str]:
-    if not data.startswith("!"):
-      return None, data
-    
-    if not hasattr(self, "tools"):
-      self.tools: dict[str, str] = {}
-
-    lines = data.splitlines()
-    tool_name = lines.pop(0)[1:]
-
-    if tool_name not in self.tools:
-      return None, data
-
-    updated_data = "\n".join(lines).strip()
-
-    return tool_name, updated_data
-
-  @abstracted
   @autosig
   def get_name(self) -> str:
-    ...
+    return self.name
+
+  @autosig
+  def add_tool(self, tool_name: str, tool_desc: str):
+    self.tools[tool_name] = tool_desc
+
+  @autosig
+  def get_tools(self) -> list:
+    result: list[str] = list(self.tools.keys())
+
+    return result
+
+  @autosig
+  def has_tool(self, tool_name: str) -> bool:
+    return tool_name in self.tools
 
   @abstracted
   @autosig

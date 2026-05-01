@@ -1,15 +1,13 @@
 from langex.core.classes import interface
-from langex.core.functions import args_optional, args_required, returns
+from langex.core.functions import autosig
 
 @interface
 class BaseIO:
-  @args_optional(str | None)
-  @returns(str)
-  def get_input(self, context=None):
+  @autosig
+  def get_input(self, __context__: str | None = None):
     ...
 
-  @args_required(str)
-  @returns(None)
-  def push_output(self, content):
+  @autosig
+  def push_output(self, __content__: str):
     ...
 

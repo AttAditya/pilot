@@ -14,7 +14,7 @@ class Figures:
     self.roles[name] = role
 
   @autosig
-  def get_role(self, name) -> BaseRole:
+  def get_role(self, name) -> BaseRole | None:
     return self.roles.get(name, None)
 
   @autosig

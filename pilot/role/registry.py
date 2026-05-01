@@ -1,8 +1,12 @@
-from langex.core.functions import returns
-
 class ROLES:
+  SYSTEM = "system"
   USER = "user"
-  CHAT = "chat"
+
+  class PERSONAS:
+    CHAT = "chat"
+
+  class TOOLS:
+    EXIT = "exit"
 
   @staticmethod
   def get_initial():

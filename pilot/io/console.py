@@ -5,7 +5,12 @@ from pilot.io.base import BaseIO
 @implements(BaseIO)
 class ConsoleIO:
   def get_input(self, prompt=""):
-    return input(prompt)
+    data = ""
+
+    while not data:
+      data = input(prompt).strip()
+
+    return data
 
   def push_output(self, content):
     print(content)

@@ -5,9 +5,9 @@ from pilot.formatter.base import BaseFormatter
 @implements(BaseFormatter)
 class PenguinFormatter:
   def format(self, content):
-    name = content.role.get_name()
+    name = content.source
     output = f"[{name}:start]\n"
-    output += content.data
+    output += content.content
     output += f"\n[{name}:end]\n"
 
     return output
