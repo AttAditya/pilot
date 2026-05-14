@@ -1,6 +1,7 @@
 from langex.core.classes import singleton
 
 from pilot.role.base import BaseRole
+from pilot.role.exit_tool import ExitTool
 from pilot.role.registry import ROLES
 from pilot.role.user import User
 
@@ -10,7 +11,11 @@ class RoleFactory:
     self.roles = {
       ROLES.USER: {
         "class": User,
-        "tools": [ROLES.USER],
+        "tools": [ROLES.USER, ROLES.TOOLS.EXIT],
+      },
+      ROLES.TOOLS.EXIT: {
+        "class": ExitTool,
+        "tools": [],
       }
     }
 
@@ -32,4 +37,14 @@ class RoleFactory:
       instance.add_tool(tool_name, tool_desc)
 
     return instance
+
+  def get_figures(self) -> list[BaseRole]:
+    roles: list[BaseRole] = []
+    available = [ROLES.USER, ROLES.TOOLS.EXIT]
+
+    for role_name in available:
+      role = self.create_role(role_name)
+      roles.append(role)
+
+    return roles
 

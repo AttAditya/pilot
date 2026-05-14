@@ -10,14 +10,13 @@ class Manager:
     self.ready = False
 
   def setup(self):
-    figures = [
-      RoleFactory.create_role(ROLES.USER),
-    ]
+    figures = RoleFactory.get_figures()
 
     for figure in figures:
       self.figures.add_role(figure)
 
-    self.control.set_role(figures[0])
+    initial_role = self.figures.get_role(ROLES.USER)
+    self.control.set_role(initial_role)
     self.control.start()
     self.ready = True
 
