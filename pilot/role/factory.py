@@ -40,7 +40,10 @@ class RoleFactory:
 
   def get_figures(self) -> list[BaseRole]:
     roles: list[BaseRole] = []
-    available = [ROLES.USER, ROLES.TOOLS.EXIT]
+    available = [
+      ROLES.USER,
+      ROLES.TOOLS.EXIT,
+    ]
 
     for role_name in available:
       role = self.create_role(role_name)
